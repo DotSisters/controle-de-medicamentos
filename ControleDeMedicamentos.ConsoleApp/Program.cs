@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using ControleDeMedicamentos.ConsoleApp.Compartilhado;
 using ControleDeMedicamentos.ConsoleApp.Compartilhado.Arquivos;
+using ControleDeMedicamentos.ConsoleApp.ModuloFornecedores;
 using ControleDeMedicamentos.ConsoleApp.Utilidades;
 
 ContextoJson contexto = new ContextoJson();
@@ -15,7 +16,9 @@ catch (JsonException)
   return;
 }
 
-TelaPrincipal telaPrincipal = new TelaPrincipal();
+IRepositorio<Fornecedor> repositorioFornecedor = new RepositorioFornecedorEmArquivo(contexto);
+
+TelaPrincipal telaPrincipal = new TelaPrincipal(repositorioFornecedor);
 
 while (true)
 {
