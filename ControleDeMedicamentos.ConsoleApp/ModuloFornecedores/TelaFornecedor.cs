@@ -9,6 +9,25 @@ public class TelaFornecedor : TelaBase<Fornecedor>, ITelaOpcoes, ITelaCrud
     {
     }
 
+    public override string? ObterOpcaoMenu()
+    {
+        string nomeMinusculo = nomeEntidade.ToLower();
+
+        Console.Clear();
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine($"Gestão de Fornecedores");
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine($"1 - Cadastrar fornecedores");
+        Console.WriteLine($"2 - Editar fornecedores");
+        Console.WriteLine($"3 - Excluir fornecedores");
+        Console.WriteLine($"4 - Visualizar fornecedores");
+        Console.WriteLine("S - Voltar para o início");
+        Console.WriteLine("---------------------------------");
+        Console.Write("> ");
+        string? opcaoMenu = Console.ReadLine()?.ToUpper();
+
+        return opcaoMenu;
+    }
     public override void VisualizarTodos(bool deveExibirCabecalho)
     {
         if (deveExibirCabecalho)
@@ -35,9 +54,12 @@ public class TelaFornecedor : TelaBase<Fornecedor>, ITelaOpcoes, ITelaCrud
             );
         }
 
+        if (deveExibirCabecalho)
+        {
         Console.WriteLine("---------------------------------");
         Console.WriteLine("Pressione Enter para voltar ao menu...");
         Console.ReadLine();
+        }
     }
 
     protected override Fornecedor ObterDadosCadastrais()
