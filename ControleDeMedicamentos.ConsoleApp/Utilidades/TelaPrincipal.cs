@@ -2,6 +2,7 @@ using ControleDeMedicamentos.ConsoleApp.Compartilhado;
 using ControleDeMedicamentos.ConsoleApp.ModuloFornecedores;
 using ControleDeMedicamentos.ConsoleApp.ModuloPacientes;
 using ControleDeMedicamentos.ConsoleApp.ModuloMedicamentos;
+using ControleDeMedicamentos.ConsoleApp.ModuloFuncionarios;
 
 namespace ControleDeMedicamentos.ConsoleApp.Utilidades;
 
@@ -9,14 +10,15 @@ public class TelaPrincipal
 {
   private readonly IRepositorio<Fornecedor> repositorioFornecedor;
   private readonly IRepositorio<Paciente> repositorioPaciente;
-
   private readonly IRepositorio<Medicamento> repositorioMedicamento;
+  private readonly IRepositorio<Funcionario> repositorioFuncionario;
 
-  public TelaPrincipal(IRepositorio<Fornecedor> repositorioFornecedor, IRepositorio<Paciente> repositorioPaciente, IRepositorio<Medicamento> repositorioMedicamento)
+  public TelaPrincipal(IRepositorio<Fornecedor> repositorioFornecedor, IRepositorio<Paciente> repositorioPaciente, IRepositorio<Medicamento> repositorioMedicamento, IRepositorio<Funcionario> repositorioFuncionario)
   {
     this.repositorioFornecedor = repositorioFornecedor;
     this.repositorioPaciente = repositorioPaciente;
     this.repositorioMedicamento = repositorioMedicamento;
+    this.repositorioFuncionario = repositorioFuncionario;
   }
 
   public ITelaOpcoes? ApresentarMenuOpcoesPrincipal()
@@ -28,6 +30,7 @@ public class TelaPrincipal
     Console.WriteLine("1 - Gestão de Fornecedores");
     Console.WriteLine("2 - Gestão de Pacientes");
     Console.WriteLine("3 - Gestão de Medicamentos");
+    Console.WriteLine("4 - Gestão de Funcionários");
     Console.WriteLine("S - Sair");
     Console.WriteLine("---------------------------------");
     Console.Write("> ");
@@ -41,6 +44,9 @@ public class TelaPrincipal
 
     if (opcaoMenuPrincipal == "3")
       return new TelaMedicamento(repositorioMedicamento, repositorioFornecedor);
+
+    if (opcaoMenuPrincipal == "4")
+      return new TelaFuncionario(repositorioFuncionario);
 
     return null;
   }
