@@ -29,7 +29,7 @@ public class Funcionario : EntidadeBase
         int contadorDigitos = 0;
         bool contemLetraOuSimbolo = false;
 
-        string telefoneEncurtado = Telefone.Replace(" ", "").Replace("-", "").Replace(".", "");
+        string telefoneEncurtado = Telefone.Replace(" ", "").Replace("-", "").Replace(".", "").Replace(")", "").Replace("(", "");
 
         if (telefoneEncurtado.StartsWith("0"))
             telefoneEncurtado = telefoneEncurtado.Substring(1);
