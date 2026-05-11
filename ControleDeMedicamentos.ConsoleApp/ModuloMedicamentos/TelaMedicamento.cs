@@ -1,6 +1,4 @@
-using System;
 using ControleDeMedicamentos.ConsoleApp.Compartilhado;
-using ControleDeMedicamentos.ConsoleApp.ModuloFornecedores;
 using ControleDeMedicamentos.ConsoleApp.Utilidades;
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloMedicamentos;
@@ -40,9 +38,12 @@ public class TelaMedicamento : TelaBase<Medicamento>, ITelaOpcoes, ITelaCrud
            );
         }
 
+        if (deveExibirCabecalho)
+        {
         Console.WriteLine("---------------------------------");
         Console.WriteLine("Pressione Enter para voltar ao menu...");
         Console.ReadLine();
+        }
     }
 
     protected override Medicamento ObterDadosCadastrais()

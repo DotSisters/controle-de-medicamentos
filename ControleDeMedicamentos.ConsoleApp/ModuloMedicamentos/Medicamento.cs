@@ -9,6 +9,10 @@ public class Medicamento : EntidadeBase
     public int QuantidadeEstoque { get; set; }
     public Fornecedor Fornecedor { get; set; }
 
+    public Medicamento()
+    {
+    }
+
     public Medicamento(string nome, string descricao, int quantidadeEstoque, Fornecedor fornecedor)
     {
         Nome = nome;
