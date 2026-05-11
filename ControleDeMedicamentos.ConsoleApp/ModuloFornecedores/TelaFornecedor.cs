@@ -37,7 +37,7 @@ public class TelaFornecedor : TelaBase<Fornecedor>, ITelaOpcoes, ITelaCrud
 
         Console.WriteLine("---------------------------------");
         Console.WriteLine("Pressione Enter para voltar ao menu...");
-        Console.ReadLine();        
+        Console.ReadLine();
     }
 
     protected override Fornecedor ObterDadosCadastrais()
@@ -54,4 +54,21 @@ public class TelaFornecedor : TelaBase<Fornecedor>, ITelaOpcoes, ITelaCrud
         return new Fornecedor(nome, telefone, cnpj);
     }
 
+    protected override List<string> ValidarRegistroDuplicado(Fornecedor novaEntidade, string? idIgnorado = null)
+    {
+        List<string> erros = new List<string>();
+
+        List<Fornecedor> fornecedores = repositorio.SelecionarTodos();
+
+        foreach (Fornecedor f in fornecedores)
+        {
+            if (f.Id != idIgnorado && f.Cnpj == novaEntidade.Cnpj)
+            {
+                erros.Add($"Já existe um fornecedor com o Cnpj \"{novaEntidade.Cnpj}\"");
+                break;
+            }
+        }
+
+        return erros;
+    }
 }
