@@ -26,15 +26,15 @@ public class TelaMedicamento : TelaBase<Medicamento>, ITelaOpcoes, ITelaCrud
         }
 
         Console.WriteLine(
-           "{0, -7} | {1, -30} | {2, -15} | {3, -20}",
-           "Id", "Nome", "Fornecedor", "Descrição"
+           "{0, -7} | {1, -30} | {2, -15} | {3, -15} | {4, -20}",
+           "Id", "Nome", "Fornecedor", "Quantidade", "Descrição"
        );
 
         foreach (Medicamento m in medicamentos)
         {
             Console.WriteLine(
-               "{0, -7} | {1, -30} | {2, -15} | {3, -20}",
-               m.Id, m.Nome, m.Fornecedor.Nome, m.Descricao
+               "{0, -7} | {1, -30} | {2, -15} | {3, -15} | {4, -20}",
+               m.Id, m.Nome, m.Fornecedor.Nome, m.QuantidadeEstoque, m.Descricao
            );
         }
 
@@ -51,7 +51,7 @@ public class TelaMedicamento : TelaBase<Medicamento>, ITelaOpcoes, ITelaCrud
         Console.Write("Digite o nome do medicamento: ");
         string nome = Console.ReadLine() ?? string.Empty;
 
-        Console.Write("Digite a descrição do medicamento ");
+        Console.Write("Digite a descrição do medicamento: ");
         string descricao = Console.ReadLine() ?? string.Empty;
 
         Console.Write("Digite a quantidade em estoque: ");

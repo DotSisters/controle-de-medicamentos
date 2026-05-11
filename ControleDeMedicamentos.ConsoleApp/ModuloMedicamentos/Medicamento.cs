@@ -40,5 +40,6 @@ public class Medicamento : EntidadeBase
         Nome = medicamentoAtualizado.Nome;
         Descricao = medicamentoAtualizado.Descricao;
         Fornecedor = medicamentoAtualizado.Fornecedor;
+        QuantidadeEstoque = medicamentoAtualizado.QuantidadeEstoque;
     }
 }
