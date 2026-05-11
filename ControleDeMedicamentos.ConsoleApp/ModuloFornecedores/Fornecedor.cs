@@ -106,6 +106,10 @@ public class Fornecedor : EntidadeBase
 
     public override void AtualizarDados(EntidadeBase entidadeAtualizada)
     {
-        throw new NotImplementedException();
+        Fornecedor fornecedorAtualizado = (Fornecedor)entidadeAtualizada;
+
+        Nome = fornecedorAtualizado.Nome;
+        Telefone = fornecedorAtualizado.Telefone;
+        Cnpj = fornecedorAtualizado.Cnpj;
     }
 }
