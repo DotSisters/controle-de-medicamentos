@@ -15,6 +15,15 @@ public class TelaFuncionario : TelaBase<Funcionario>, ITelaOpcoes, ITelaCrud
 
     protected override Funcionario ObterDadosCadastrais()
     {
-        throw new NotImplementedException();
+        Console.Write("Digite o nome do funcionário: ");
+        string nome = Console.ReadLine() ?? string.Empty;
+
+        Console.Write("Digite o telefone do funcionário: ");
+        string telefone = Console.ReadLine() ?? string.Empty;
+
+        Console.Write("Digite o CPF do funcionário: ");
+        string cpf = Console.ReadLine() ?? string.Empty;
+
+        return new Funcionario(nome, telefone, cpf);
     }
 }
