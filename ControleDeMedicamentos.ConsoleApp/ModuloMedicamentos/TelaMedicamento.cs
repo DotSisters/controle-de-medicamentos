@@ -14,9 +14,35 @@ public class TelaMedicamento : TelaBase<Medicamento>, ITelaOpcoes, ITelaCrud
         this.repositorioFornecedor = repositorioFornecedor;
     }
 
-    public override void VisualizarTodos(bool deveExibirCabecalho)
+ public override void VisualizarTodos(bool deveExibirCabecalho)
     {
-        throw new NotImplementedException();
+        if (deveExibirCabecalho)
+            ExibirCabecalho("Visualização de Medicamentos");
+
+        List<Medicamento> medicamentos = repositorio.SelecionarTodos();
+
+        if (medicamentos.Count == 0)
+        {
+            Notificador.ExibirMensagem("Nenhum medicamento registrado");
+            return;
+        }
+
+        Console.WriteLine(
+           "{0, -7} | {1, -30} | {2, -15} | {3, -20}",
+           "Id", "Nome", "Fornecedor", "Descrição"
+       );
+
+        foreach (Medicamento m in medicamentos)
+        {
+            Console.WriteLine(
+               "{0, -7} | {1, -30} | {2, -15} | {3, -20}",
+               m.Id, m.Nome, m.Fornecedor.Nome, m.Descricao
+           );
+        }
+
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Pressione Enter para voltar ao menu...");
+        Console.ReadLine();
     }
 
     protected override Medicamento ObterDadosCadastrais()
