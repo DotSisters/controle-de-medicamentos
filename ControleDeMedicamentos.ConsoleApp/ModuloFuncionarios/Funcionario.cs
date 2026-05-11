@@ -103,6 +103,10 @@ public class Funcionario : EntidadeBase
     }
     public override void AtualizarDados(EntidadeBase entidadeAtualizada)
     {
-        throw new NotImplementedException();
+        Funcionario funcionarioAtualizado = (Funcionario)entidadeAtualizada;
+
+        Nome = funcionarioAtualizado.Nome;
+        Telefone = funcionarioAtualizado.Telefone;
+        Cpf = funcionarioAtualizado.Cpf;
     }
 }
