@@ -22,6 +22,16 @@ public class Paciente : EntidadeBase
     CPF = cpf;
   }
 
+  public override void AtualizarDados(EntidadeBase entidadeAtualizada)
+  {
+    Paciente pacienteAtualizado = (Paciente)entidadeAtualizada;
+
+    Nome = pacienteAtualizado.Nome;
+    Telefone = pacienteAtualizado.Telefone;
+    CartaoSUS = pacienteAtualizado.CartaoSUS;
+    CPF = pacienteAtualizado.CPF;
+  }
+
   public override List<string> Validar()
   {
     List<string> erros = [];
