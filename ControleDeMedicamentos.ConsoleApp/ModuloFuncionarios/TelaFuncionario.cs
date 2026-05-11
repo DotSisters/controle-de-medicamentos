@@ -34,9 +34,12 @@ public class TelaFuncionario : TelaBase<Funcionario>, ITelaOpcoes, ITelaCrud
             );
         }
 
+        if (deveExibirCabecalho)
+        {
         Console.WriteLine("---------------------------------");
         Console.WriteLine("Pressione Enter para voltar ao menu...");
         Console.ReadLine();
+        }
 
     }
 
