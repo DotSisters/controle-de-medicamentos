@@ -160,9 +160,4 @@ public class Paciente : EntidadeBase
         .Replace("(", "")
         .Replace(")", "");
   }
-
-  public override void AtualizarDados(EntidadeBase entidadeAtualizada)
-  {
-    throw new NotImplementedException();
-  }
 }
