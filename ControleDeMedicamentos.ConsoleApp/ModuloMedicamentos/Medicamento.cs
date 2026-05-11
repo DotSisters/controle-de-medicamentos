@@ -19,7 +19,15 @@ public class Medicamento : EntidadeBase
 
     public override List<string> Validar()
     {
-        throw new NotImplementedException();
+        List<string> erros = new List<string>();
+
+        if (Nome.Length < 3 || Nome.Length > 100)
+            erros.Add("O campo \"Nome\" deve conter entre 3 e 100 caracteres.");
+
+        if (Descricao.Length < 5 || Descricao.Length > 255)
+            erros.Add("O campo \"Descrição\" deve conter entre 5 e 255 caracteres.");
+
+        return erros;
     }
 
     public override void AtualizarDados(EntidadeBase entidadeAtualizada)
