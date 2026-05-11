@@ -60,4 +60,22 @@ public class TelaPaciente : TelaBase<Paciente>, ITelaCrud, ITelaOpcoes
 
     return new Paciente(nome, telefone, cartaoSUS, cpf);
   }
+
+  protected override List<string> ValidarRegistroDuplicado(Paciente novaEntidade, string? idIgnorado = null)
+  {
+    List<string> erros = [];
+
+    List<Paciente> pacientes = repositorio.SelecionarTodos();
+
+    foreach (Paciente p in pacientes)
+    {
+      if (p.Id != idIgnorado && p.CartaoSUS == novaEntidade.CartaoSUS)
+      {
+        erros.Add($"Já existe um paciente com o Cartão SUS \"{novaEntidade.CartaoSUS}\"");
+        break;
+      }
+    }
+
+    return erros;
+  }
 }
