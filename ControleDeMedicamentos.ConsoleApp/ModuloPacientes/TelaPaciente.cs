@@ -1,4 +1,5 @@
 using ControleDeMedicamentos.ConsoleApp.Compartilhado;
+using ControleDeMedicamentos.ConsoleApp.Utilidades;
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloPacientes;
 
@@ -10,7 +11,37 @@ public class TelaPaciente : TelaBase<Paciente>, ITelaCrud, ITelaOpcoes
 
   public override void VisualizarTodos(bool deveExibirCabecalho)
   {
-    throw new NotImplementedException();
+    if (deveExibirCabecalho)
+      ExibirCabecalho("Visualização de Pacientes");
+
+    List<Paciente> pacientes = repositorio.SelecionarTodos();
+
+    if (pacientes.Count == 0)
+    {
+      Notificador.ExibirMensagem("Nenhum item registrado.");
+      return;
+    }
+
+    Console.WriteLine(
+        "{0, -7} | {1, -25} | {2, -20} | {3, -20} | {4, -15}",
+        "ID", "Nome", "Telefone", "Cartão SUS", "CPF"
+    );
+
+    foreach (Paciente p in pacientes)
+    {
+
+      Console.WriteLine(
+          "{0, -7} | {1, -25} | {2, -20} | {3, -20} | {4, -15}",
+          p.Id, p.Nome, p.Telefone, p.CartaoSUS, p.CPF
+      );
+    }
+
+    if (deveExibirCabecalho)
+    {
+      Console.WriteLine("---------------------------------");
+      Console.Write("Digite ENTER para continuar...");
+      Console.ReadLine();
+    }
   }
 
   protected override Paciente ObterDadosCadastrais()
