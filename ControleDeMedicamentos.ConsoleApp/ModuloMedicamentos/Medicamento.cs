@@ -29,9 +29,12 @@ public class Medicamento : EntidadeBase
 
         return erros;
     }
-
     public override void AtualizarDados(EntidadeBase entidadeAtualizada)
     {
-        throw new NotImplementedException();
+        Medicamento medicamentoAtualizado = (Medicamento)entidadeAtualizada;
+
+        Nome = medicamentoAtualizado.Nome;
+        Descricao = medicamentoAtualizado.Descricao;
+        Fornecedor = medicamentoAtualizado.Fornecedor;
     }
 }
