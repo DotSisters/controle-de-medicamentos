@@ -10,7 +10,34 @@ public class TelaFuncionario : TelaBase<Funcionario>, ITelaOpcoes, ITelaCrud
     }
     public override void VisualizarTodos(bool deveExibirCabecalho)
     {
-        throw new NotImplementedException();
+        if (deveExibirCabecalho)
+            ExibirCabecalho("Visualização de Funcionários");
+
+        List<Funcionario> funcionarios = repositorio.SelecionarTodos();
+
+        if (funcionarios.Count == 0)
+        {
+            Notificador.ExibirMensagem("Nenhum funcionário registrado");
+            return;
+        }
+
+        Console.WriteLine(
+            "{0, -7} | {1, -30} | {2, -15} | {3, -20}",
+            "Id", "Nome", "Telefone", "CPF"
+        );
+
+        foreach (Funcionario f in funcionarios)
+        {
+            Console.WriteLine(
+                "{0, -7} | {1, -30} | {2, -15} | {3, -20}",
+                f.Id, f.Nome, f.Telefone, f.Cpf
+            );
+        }
+
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Pressione Enter para voltar ao menu...");
+        Console.ReadLine();
+
     }
 
     protected override Funcionario ObterDadosCadastrais()
