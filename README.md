@@ -4,6 +4,8 @@
 
 ### 1. Módulo de Fornecedores
 
+![](./.docs/fornecedor.gif)
+
 **Requisitos Funcionais**
 
 - O sistema deve permitir registrar novos fornecedores
@@ -24,6 +26,8 @@ Campos obrigatórios:
 ---
 
 ### 2. Módulo de Pacientes
+
+![](./.docs/paciente.gif)
 
 **Requisitos Funcionais**
 
@@ -46,6 +50,8 @@ Campos obrigatórios:
 ---
 
 ### 3. Módulo de Medicamentos
+
+![](./.docs/medicamento.gif)
 
 **Requisitos Funcionais**
 
@@ -70,6 +76,8 @@ Campos obrigatórios:
 ---
 
 ### 4. Módulo de Funcionários
+
+![](./.docs/funcionarios.gif)
 
 **Requisitos Funcionais**
 
