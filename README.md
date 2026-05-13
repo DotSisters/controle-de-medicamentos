@@ -102,7 +102,7 @@ Campos obrigatórios:
 
 #### 5.1 Requisições de Entrada
 
-![](./.docs/registroentrada.gif)
+![](./.docs/reqentrada.gif)
 
 **Requisitos Funcionais para Requisições de Entrada**
 
