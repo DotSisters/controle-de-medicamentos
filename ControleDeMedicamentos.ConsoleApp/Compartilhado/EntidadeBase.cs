@@ -1,19 +1,24 @@
 using System.Security.Cryptography;
+using System.Text.Json.Serialization;
 
 namespace ControleDeMedicamentos.ConsoleApp.Compartilhado;
 
 public abstract class EntidadeBase
 {
-    public string Id { get; private set; } = string.Empty;
+  [JsonInclude]
+  public string Id { get; private set; } = string.Empty;
 
-    public EntidadeBase()
+  public EntidadeBase()
+  {
+    if (string.IsNullOrEmpty(Id))
     {
-        Id = Convert
-                .ToHexString(RandomNumberGenerator.GetBytes(4))
-                .ToLower()
-                .Substring(0, 7);
+      Id = Convert
+          .ToHexString(RandomNumberGenerator.GetBytes(4))
+          .ToLower()
+          .Substring(0, 7);
     }
+  }
 
-    public abstract List<string> Validar();
-    public abstract void AtualizarDados(EntidadeBase entidadeAtualizada);
+  public abstract List<string> Validar();
+  public abstract void AtualizarDados(EntidadeBase entidadeAtualizada);
 }
