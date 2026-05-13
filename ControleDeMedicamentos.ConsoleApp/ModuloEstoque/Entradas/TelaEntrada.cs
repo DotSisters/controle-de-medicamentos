@@ -71,7 +71,30 @@ public class TelaEntrada : TelaBaseEstoque<Entrada>, ITelaOpcoes, ITelaCR
 
   public override void VisualizarTodos()
   {
-    throw new NotImplementedException();
+    ExibirCabecalho("Visualização de Requisições de Entrada");
+
+    Console.WriteLine(
+        "{0, -7} | {1, -18} | {2, -20} | {3, -20} | {4, -18}",
+        "Id", "Data de Criação", "Funcionário", "Medicamento", "Quantidade"
+    );
+
+    List<Entrada> requisicoes = repositorio.SelecionarTodos();
+
+    foreach (Entrada req in requisicoes)
+    {
+      Console.WriteLine(
+          "{0, -7} | {1, -18} | {2, -20} | {3, -20} | {4, -18}",
+          req.Id,
+          req.Data.ToShortDateString(),
+          req.Funcionario.Nome,
+          req.Medicamento.Nome,
+          req.Quantidade
+      );
+    }
+
+    Console.WriteLine("---------------------------------");
+    Console.Write("Digite ENTER para continuar...");
+    Console.ReadLine();
   }
 
   private void VisualizarMedicamentos()
