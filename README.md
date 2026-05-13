@@ -102,6 +102,8 @@ Campos obrigatórios:
 
 #### 5.1 Requisições de Entrada
 
+![](./.docs/registroentrada.gif)
+
 **Requisitos Funcionais para Requisições de Entrada**
 
 - O sistema deve permitir registrar novas requisições de entrada
@@ -121,6 +123,8 @@ Campos obrigatórios:
 ---
 
 #### 5.2 Requisições de Saída
+
+![](./.docs/registrossaida.gif)
 
 **Requisitos Funcionais para Requisições de Saída**
 
