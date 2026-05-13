@@ -45,6 +45,7 @@ public class TelaPrincipal
     Console.WriteLine("2 - Gestão de Pacientes");
     Console.WriteLine("3 - Gestão de Medicamentos");
     Console.WriteLine("4 - Gestão de Funcionários");
+    Console.WriteLine("5 - Gestão de Estoque");
     Console.WriteLine("S - Sair");
     Console.WriteLine("---------------------------------");
     Console.Write("> ");
