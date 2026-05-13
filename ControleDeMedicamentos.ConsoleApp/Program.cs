@@ -6,6 +6,8 @@ using ControleDeMedicamentos.ConsoleApp.ModuloPacientes;
 using ControleDeMedicamentos.ConsoleApp.ModuloMedicamentos;
 using ControleDeMedicamentos.ConsoleApp.Utilidades;
 using ControleDeMedicamentos.ConsoleApp.ModuloFuncionarios;
+using ControleDeMedicamentos.ConsoleApp.ModuloEstoque.Entradas;
+using ControleDeMedicamentos.ConsoleApp.ModuloEstoque.Saidas;
 
 ContextoJson contexto = new ContextoJson();
 
@@ -23,8 +25,18 @@ IRepositorio<Fornecedor> repositorioFornecedor = new RepositorioFornecedorEmArqu
 IRepositorio<Paciente> repositorioPaciente = new RepositorioPacienteEmArquivo(contexto);
 IRepositorio<Medicamento> repositorioMedicamento = new RepositorioMedicamentoEmArquivo(contexto);
 IRepositorio<Funcionario> repositorioFuncionario = new RepositorioFuncionarioEmArquivo(contexto);
+IRepositorio<Entrada> repositorioEntrada = new RepositorioEntradaEmArquivo(contexto);
+IRepositorio<Saida> repositorioSaida = new RepositorioSaidaEmArquivo(contexto);
 
-TelaPrincipal telaPrincipal = new TelaPrincipal(repositorioFornecedor, repositorioPaciente, repositorioMedicamento, repositorioFuncionario);
+
+TelaPrincipal telaPrincipal = new TelaPrincipal(
+  repositorioFornecedor,
+  repositorioPaciente,
+  repositorioMedicamento,
+  repositorioFuncionario,
+  repositorioEntrada,
+  repositorioSaida
+);
 
 while (true)
 {

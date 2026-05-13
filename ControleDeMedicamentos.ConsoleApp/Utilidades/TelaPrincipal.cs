@@ -3,6 +3,9 @@ using ControleDeMedicamentos.ConsoleApp.ModuloFornecedores;
 using ControleDeMedicamentos.ConsoleApp.ModuloPacientes;
 using ControleDeMedicamentos.ConsoleApp.ModuloMedicamentos;
 using ControleDeMedicamentos.ConsoleApp.ModuloFuncionarios;
+using ControleDeMedicamentos.ConsoleApp.ModuloEstoque.Entradas;
+using ControleDeMedicamentos.ConsoleApp.ModuloEstoque.Saidas;
+using ControleDeMedicamentos.ConsoleApp.ModuloEstoque;
 
 namespace ControleDeMedicamentos.ConsoleApp.Utilidades;
 
@@ -12,13 +15,24 @@ public class TelaPrincipal
   private readonly IRepositorio<Paciente> repositorioPaciente;
   private readonly IRepositorio<Medicamento> repositorioMedicamento;
   private readonly IRepositorio<Funcionario> repositorioFuncionario;
+  private readonly IRepositorio<Entrada> repositorioEntrada;
+  private readonly IRepositorio<Saida> repositorioSaida;
 
-  public TelaPrincipal(IRepositorio<Fornecedor> repositorioFornecedor, IRepositorio<Paciente> repositorioPaciente, IRepositorio<Medicamento> repositorioMedicamento, IRepositorio<Funcionario> repositorioFuncionario)
+  public TelaPrincipal(
+    IRepositorio<Fornecedor> repositorioFornecedor,
+    IRepositorio<Paciente> repositorioPaciente,
+    IRepositorio<Medicamento> repositorioMedicamento,
+    IRepositorio<Funcionario> repositorioFuncionario,
+    IRepositorio<Entrada> repositorioEntrada,
+    IRepositorio<Saida> repositorioSaida
+  )
   {
     this.repositorioFornecedor = repositorioFornecedor;
     this.repositorioPaciente = repositorioPaciente;
     this.repositorioMedicamento = repositorioMedicamento;
     this.repositorioFuncionario = repositorioFuncionario;
+    this.repositorioEntrada = repositorioEntrada;
+    this.repositorioSaida = repositorioSaida;
   }
 
   public ITelaOpcoes? ApresentarMenuOpcoesPrincipal()
@@ -47,6 +61,9 @@ public class TelaPrincipal
 
     if (opcaoMenuPrincipal == "4")
       return new TelaFuncionario(repositorioFuncionario);
+
+    if (opcaoMenuPrincipal == "5")
+      return new TelaEstoque(repositorioEntrada, repositorioSaida, repositorioMedicamento, repositorioFuncionario, repositorioPaciente);
 
     return null;
   }
