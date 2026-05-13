@@ -1,45 +1,56 @@
 using ControleDeMedicamentos.ConsoleApp.Compartilhado;
+using ControleDeMedicamentos.ConsoleApp.ModuloEstoque.Entradas;
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloMedicamentos;
 
 public class Medicamento : EntidadeBase
 {
-    public string Nome { get; set; }
-    public string Descricao { get; set; }
-    public int QuantidadeEstoque { get; set; }
-    public Fornecedor Fornecedor { get; set; }
+  public string Nome { get; set; }
+  public string Descricao { get; set; }
+  public int QuantidadeEstoque { get; set; }
+  public List<Entrada> RequisicoesDeEntrada { get; set; } = [];
+  public Fornecedor Fornecedor { get; set; }
+  public string StatusEstoque => QuantidadeEstoque < 20 ? "EM FALTA" : "EM ESTOQUE";
 
-    public Medicamento()
-    {
-    }
 
-    public Medicamento(string nome, string descricao, int quantidadeEstoque, Fornecedor fornecedor)
-    {
-        Nome = nome;
-        Descricao = descricao;
-        QuantidadeEstoque = quantidadeEstoque;
-        Fornecedor = fornecedor;
-    }
+  public Medicamento()
+  {
+  }
 
-    public override List<string> Validar()
-    {
-        List<string> erros = new List<string>();
+  public Medicamento(string nome, string descricao, int quantidadeEstoque, Fornecedor fornecedor)
+  {
+    Nome = nome;
+    Descricao = descricao;
+    QuantidadeEstoque = quantidadeEstoque;
+    Fornecedor = fornecedor;
+  }
 
-        if (Nome.Length < 3 || Nome.Length > 100)
-            erros.Add("O campo \"Nome\" deve conter entre 3 e 100 caracteres.");
+  public void RegistrarRequisicaoEntrada(Entrada requisicao)
+  {
+    RequisicoesDeEntrada.Add(requisicao);
+    QuantidadeEstoque += (int)requisicao.Quantidade;
+  }
 
-        if (Descricao.Length < 5 || Descricao.Length > 255)
-            erros.Add("O campo \"Descrição\" deve conter entre 5 e 255 caracteres.");
+  public override List<string> Validar()
+  {
+    List<string> erros = new List<string>();
 
-        return erros;
-    }
-    public override void AtualizarDados(EntidadeBase entidadeAtualizada)
-    {
-        Medicamento medicamentoAtualizado = (Medicamento)entidadeAtualizada;
+    if (Nome.Length < 3 || Nome.Length > 100)
+      erros.Add("O campo \"Nome\" deve conter entre 3 e 100 caracteres.");
 
-        Nome = medicamentoAtualizado.Nome;
-        Descricao = medicamentoAtualizado.Descricao;
-        Fornecedor = medicamentoAtualizado.Fornecedor;
-        QuantidadeEstoque = medicamentoAtualizado.QuantidadeEstoque;
-    }
+    if (Descricao.Length < 5 || Descricao.Length > 255)
+      erros.Add("O campo \"Descrição\" deve conter entre 5 e 255 caracteres.");
+
+    return erros;
+  }
+
+  public override void AtualizarDados(EntidadeBase entidadeAtualizada)
+  {
+    Medicamento medicamentoAtualizado = (Medicamento)entidadeAtualizada;
+
+    Nome = medicamentoAtualizado.Nome;
+    Descricao = medicamentoAtualizado.Descricao;
+    Fornecedor = medicamentoAtualizado.Fornecedor;
+    QuantidadeEstoque = medicamentoAtualizado.QuantidadeEstoque;
+  }
 }
