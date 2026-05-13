@@ -22,7 +22,7 @@ public class Entrada : EntidadeBase
     Funcionario = funcionario;
     Quantidade = quantidade;
 
-    // Medicamento.RegistrarRequisicaoEntrada(this);
+    Medicamento.RegistrarRequisicaoEntrada(this);
   }
 
   public override void AtualizarDados(EntidadeBase entidadeAtualizada)
