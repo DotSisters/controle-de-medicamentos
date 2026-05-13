@@ -110,15 +110,15 @@ public class TelaEntrada : TelaBaseEstoque<Entrada>, ITelaOpcoes, ITelaCR
     Console.WriteLine("---------------------------------");
 
     Console.WriteLine(
-       "{0, -7} | {1, -30} | {2, -15} | {3, -15} | {4, -20} | {5, -15}",
-       "Id", "Nome", "Fornecedor", "Quantidade", "Descrição", "Status Estoque"
+       "{0, -7} | {1, -30} | {2, -15} | {3, -15} | {4, -15} | {5, -20}",
+       "Id", "Nome", "Fornecedor", "Quantidade", "Status Estoque", "Descrição"
    );
 
     foreach (Medicamento m in medicamentos)
     {
       Console.WriteLine(
-         "{0, -7} | {1, -30} | {2, -15} | {3, -15} | {4, -20} | {5, -10}",
-         m.Id, m.Nome, m.Fornecedor.Nome, m.QuantidadeEstoque, m.Descricao, m.StatusEstoque
+         "{0, -7} | {1, -30} | {2, -15} | {3, -15} | {4, -15} | {5, -20}",
+         m.Id, m.Nome, m.Fornecedor.Nome, m.QuantidadeEstoque, m.StatusEstoque, m.Descricao
      );
     }
 
