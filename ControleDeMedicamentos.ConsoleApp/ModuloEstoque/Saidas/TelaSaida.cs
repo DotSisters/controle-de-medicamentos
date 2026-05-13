@@ -109,7 +109,37 @@ public class TelaSaida : TelaBaseEstoque<Saida>, ITelaOpcoes, ITelaCR
 
   public override void VisualizarTodos()
   {
+    ExibirCabecalho("Visualização de Requisições de Saída");
 
+    List<Saida> requisicoes = repositorio.SelecionarTodos();
+
+    Console.WriteLine(
+        "{0, -7} | {1, -18} | {2, -20} | {3, -40}",
+        "Id", "Data de Criação", "Paciente", "Medicamentos Requisitados"
+    );
+
+    foreach (Saida s in requisicoes)
+    {
+      List<string> medicamentosStr = new List<string>();
+
+      foreach (MedicamentoPrescrito medPresc in s.MedicamentosPrescritos)
+      {
+        string medicamentoStr = $"({medPresc.Medicamento.Nome}, {medPresc.Quantidade})";
+
+        medicamentosStr.Add(medicamentoStr);
+      }
+
+      Console.Write("{0, -7} | ", s.Id);
+      Console.Write("{0, -18} | ", s.Data.ToShortDateString());
+      Console.Write("{0, -20} | ", s.Paciente.Nome);
+      Console.Write("{0, -40}", string.Join(", ", medicamentosStr));
+
+      Console.WriteLine();
+    }
+
+    Console.WriteLine("---------------------------------");
+    Console.Write("Digite ENTER para continuar...");
+    Console.ReadLine();
   }
 
   public void VisualizarPacientes()
