@@ -1,5 +1,6 @@
 using ControleDeMedicamentos.ConsoleApp.Compartilhado;
 using ControleDeMedicamentos.ConsoleApp.ModuloEstoque.Entradas;
+using ControleDeMedicamentos.ConsoleApp.ModuloEstoque.Saidas;
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloMedicamentos;
 
@@ -9,9 +10,9 @@ public class Medicamento : EntidadeBase
   public string Descricao { get; set; }
   public int QuantidadeEstoque { get; set; }
   public List<Entrada> RequisicoesDeEntrada { get; set; } = [];
+  public List<Saida> RequisicoesDeSaida { get; set; } = [];
   public Fornecedor Fornecedor { get; set; }
   public string StatusEstoque => QuantidadeEstoque < 20 ? "EM FALTA" : "EM ESTOQUE";
-
 
   public Medicamento()
   {
@@ -29,6 +30,16 @@ public class Medicamento : EntidadeBase
   {
     RequisicoesDeEntrada.Add(requisicao);
     QuantidadeEstoque += (int)requisicao.Quantidade;
+  }
+
+  public void RegistrarRequisicaoSaida(Saida requisicao)
+  {
+    RequisicoesDeSaida.Add(requisicao);
+
+    var medPrescrito = requisicao.MedicamentosPrescritos.FirstOrDefault(mp => mp.Medicamento == this);
+
+    if (medPrescrito != null)
+      QuantidadeEstoque -= (int)medPrescrito.Quantidade;
   }
 
   public override List<string> Validar()
